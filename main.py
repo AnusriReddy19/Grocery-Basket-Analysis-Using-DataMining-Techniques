@@ -53,9 +53,6 @@ print(orders.duplicated().sum())
 print("Duplicate rows in 'products':")
 print(products.duplicated().sum())
 
-
-# Assuming you have already loaded and preprocessed your data, and you have transactional data
-# If not, you can follow the previous data preparation steps
 aisles_df = pd.DataFrame(aisles)
 departments_df = pd.DataFrame(departments)
 order_products_prior_df = pd.DataFrame(order_products_prior)
@@ -63,9 +60,7 @@ order_products_train_df = pd.DataFrame(order_products_train)
 orders_df = pd.DataFrame(orders)
 products_df = pd.DataFrame(products)
 
-# Example: Convert data into transactional data
-# You can use your own logic to format the data appropriately
-# In this example, 'transaction_data' should be a DataFrame with 'order_id' and 'product_name' columns
+# In this project, 'transaction_data' should be a DataFrame with 'order_id' and 'product_name' columns
 combined_data = pd.merge(order_products_prior, products, on='product_id', how='left')
 combined_data = combined_data[['order_id', 'product_name']]
 
@@ -104,7 +99,7 @@ rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1.0)
 # Calculate confidence and lift values for each rule
 # Confidence measures how often the rule has been found to be true.
 # Lift measures the strength of association between antecedent and consequent.
-# You can adjust the "min_threshold" parameter as needed.
+# "min_threshold" parameter can be adjusted as needed.
 
 # Filter the rules based on confidence and lift thresholds
 min_confidence = 0.5  # Set your desired minimum confidence threshold
@@ -115,7 +110,7 @@ filtered_rules = rules[(rules['confidence'] >= min_confidence) & (rules['lift'] 
 # Now you have a DataFrame 'filtered_rules' that contains the filtered association rules
 # based on your confidence and lift thresholds.
 
-# Example: Print the filtered association rules
+# Print the filtered association rules
 print("Filtered Association Rules:")
 print(filtered_rules)
 
